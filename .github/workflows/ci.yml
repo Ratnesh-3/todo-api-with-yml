@@ -1,15 +1,13 @@
-name: CI Pipeline              # Workflow name (shows in GitHub UI)
+name: CI Pipeline
 
-on: [push, pull_request]      # When to run this workflow
+on: [push, pull_request]
 
-jobs:                          # Define jobs
 jobs:
-  job1:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Job 1"
-  
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Job 2"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm install
